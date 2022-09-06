@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Organigamme de l'application
 
-![image info](./src/assets/Diagramme Front Cabinet Infirmier.jpg)
+![image info](./src/assets/Diagramme%20Front%20Cabinet%20Infirmier.jpg)
 
 ## Development server
 
