@@ -1,0 +1,4 @@
+<ul *ngFor="let patient of patients">
+  <li *ngIf="patient.isActive"> {{patient.nom }} {{patient.prenom}} {{patient.adresse}} <button (click)="deletePatient(patient.id)"> Supprimer le patient </button> </li>
+</ul>
+
