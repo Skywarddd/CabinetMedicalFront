@@ -1,0 +1,7 @@
+<h2>Déplacements</h2>
+<div *ngFor="let deplacement of deplacements">
+    <p>Coût: {{ deplacement.cout }}</p>
+    <p>Date: {{ deplacement.date | date: "le dd-MM-yyyy à HH:mm:ss"}}</p>
+    <button (click)="deleteDeplacement(deplacement.id)">Supprimer</button>
+    <hr>
+</div>
