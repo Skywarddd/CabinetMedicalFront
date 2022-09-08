@@ -1,0 +1,56 @@
+<h3>Infirmiers</h3>
+<div>
+    <ul *ngFor="let item of infirmiers">
+        <li *ngIf="item.active"> {{item.nom}} {{item.prenom}}
+            <ul *ngIf="item.details">
+                <li>{{item.numPro}}</li>
+                <li>{{item.telMobile}}</li>
+                <li>{{item.telFixe}}</li>
+                <button (click)="switchAfficherUpdateForm(item)">Modifier</button>
+                <form *ngIf="item.update">
+                    <input type="text" value={{item.nom}} #updNom> Nom <br>
+                    <input type="text" value={{item.prenom}} #updPrenom> Prénom <br>
+                    <input type="text" value={{item.numPro}} #updNumPro> Numéro professionnel <br>
+                    <input type="text" value={{item.telMobile}} #updTelMobile> Téléphone mobile <br>
+                    <input type="text" value={{item.telFixe}} #updTelFixe> Téléphone fixe <br>
+                    <button type="submit" (click)="updateInfirmier(item.id,updNom,updPrenom,updNumPro,updTelMobile,updTelFixe)">Envoyer</button>
+                </form>
+            </ul>
+            <button (click)="switchAfficherDetails(item)">Details</button>
+            <button (click)="delete(item.id)">Supprimer</button>           
+        </li>
+    </ul>
+</div>
+<button (click)="getInfirmiers()">Afficher tous les infirmiers</button>
+
+<div>Rechercher par ID</div>
+<form>
+    <input type="text" #id>
+    <button type="submit" (click)="getInfirmierById(id)">Recherche</button>
+</form>
+<ul>
+    <li *ngIf="infirmierId.id">{{infirmierId.nom}} {{infirmierId.prenom}} <button (click)="delete(infirmierId.id)">Supprimer</button></li>
+</ul>
+
+<div>Rechercher par Nom</div>
+<form>
+    <input type="text" #nom>
+    <button type="submit" (click)="getInfirmierByNom(nom)">Recherche</button>
+</form>
+<ul *ngFor="let item of infirmiersNom">
+    <li *ngIf="item.active"> {{item.nom}} {{item.prenom}}
+        <button (click)="delete(item.id)">Supprimer</button>
+    </li>
+</ul>
+
+<button (click)="switchAfficherCreateForm()">Creer un nouveau profil infirmier</button>
+<form *ngIf="afficherCreateForm">
+    <input type="text" #nom> Nom <br>
+    <input type="text" #prenom> Prénom <br>
+    <input type="text" #numPro> Numéro professionnel <br>
+    <input type="text" #telMobile> Téléphone mobile <br>
+    <input type="text" #telFixe> Téléphone fixe <br>
+    <button type="submit" (click)="addInfirmier(nom,prenom,numPro,telMobile,telFixe)">Envoyer</button>
+</form>
+
+
