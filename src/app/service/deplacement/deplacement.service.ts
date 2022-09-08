@@ -16,7 +16,15 @@ export class DeplacementService {
     return this.http.get<Deplacement[]>(this.url);
   }
 
-  deleteDeplacement(id: string) {
+  postDeplacement(deplacement: Deplacement): Observable<Deplacement> {
+    return this.http.post<Deplacement>(this.url, deplacement);
+  }
+
+  putDeplacement(id: string, deplacement: Deplacement): Observable<Deplacement> {
+    return this.http.patch<Deplacement>(`${this.url}/${id}`, deplacement)
+  }
+
+  deleteDeplacement(id: string): Observable<string> {
     return this.http.delete(`${this.url}/${id}`, {responseType: 'text'});
   }
 }
