@@ -1,5 +1,5 @@
-<h2>Déplacements</h2>
-<h3>Liste des déplacements</h3>
+<h1>Déplacements</h1>
+<a routerLink="/deplacement/create">Ajouter</a>
 <div *ngFor="let deplacement of deplacements">
     <p>Coût: {{ deplacement.cout }}</p>
     <p>Date: {{ deplacement.date | date: "le dd-MM-yyyy à HH:mm:ss"}}</p>
@@ -11,9 +11,3 @@
     </form>
     <hr>
 </div>
-
-<h3>Ajouter un déplacement</h3>
-<form [formGroup]="deplacementForm">
-    <input id="cout" type="number" formControlName="cout">
-    <button type="submit" (click)="postDeplacement()">Ajouter</button>
-</form>

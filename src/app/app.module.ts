@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeplacementComponent } from './component/deplacement/deplacement.component';
+import { NewDeplacementComponent } from './component/new-deplacement/new-deplacement/new-deplacement.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DeplacementComponent
+    DeplacementComponent,
+    NewDeplacementComponent
   ],
   imports: [
     BrowserModule,

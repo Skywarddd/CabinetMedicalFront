@@ -12,7 +12,6 @@ export class DeplacementComponent implements OnInit {
 
   deplacements: Deplacement[] = [new Deplacement()];
 
-  deplacementForm!: FormGroup;
   deplacementFormUpdate!: FormGroup;
   isUpdate: boolean = false;
 
@@ -20,9 +19,6 @@ export class DeplacementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDeplacements();
-    this.deplacementForm = this.formBuilder.group({
-      cout: [null, [Validators.required]]
-    });
     this.deplacementFormUpdate = this.formBuilder.group({
       cout: [null, [Validators.required]]
     });
@@ -32,12 +28,8 @@ export class DeplacementComponent implements OnInit {
     this.service.getDeplacements().subscribe(res => this.deplacements = res);
   }
 
-  postDeplacement(): void {
-    this.service.postDeplacement(this.deplacementForm.value).subscribe();
-  }
-
   putDeplacement(id: string): void {
-    this.service.putDeplacement(id, this.deplacementFormUpdate.value).subscribe();
+    this.service.putDeplacement(id, this.deplacementFormUpdate.value).subscribe(res => { this.getDeplacements});
   }
 
   deleteDeplacement(id: string) {
