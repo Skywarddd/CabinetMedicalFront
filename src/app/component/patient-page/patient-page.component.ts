@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { InfirmierModel } from 'src/app/model/infirmier/infirmier.model';
 import {Patient} from "../../model/patient";
 import {ServicePatientService} from "../../service/service-patient.service";
 
@@ -18,8 +19,12 @@ export class PatientPageComponent implements OnInit {
   // @ts-ignore
   patients2!: Patient[];
 
+  infirmier!: InfirmierModel;
+
   showAllPatients: boolean = false;
   displayFormCreate: boolean = false;
+
+  showInfirmier: boolean = false;
 
 
   constructor(private service: ServicePatientService) {
@@ -48,6 +53,17 @@ export class PatientPageComponent implements OnInit {
     item.update = true
   }
 
+  switchShowInfirmier() {
+    this.showInfirmier = true;
+  }
+
+  public getInfirmierById (id: string): any {
+    return this.service.getInfirmierById(id).subscribe(resu => {
+      console.log(resu);
+      this.infirmier = resu;
+    })
+  }
+
   public getAllPatient = () => {
     this.service.getAllPatient().subscribe(item => {
       this.patients = item
@@ -68,8 +84,10 @@ export class PatientPageComponent implements OnInit {
       console.log(this.patients2);
     })
   }
+
   postPatient = (nom: HTMLInputElement, prenom: HTMLInputElement, dateNaissance: HTMLInputElement, sexe: HTMLInputElement, adresse: HTMLInputElement, numeroSecu: HTMLInputElement) => {
     const item = new Patient(nom.value, prenom.value, dateNaissance.value, sexe.value, adresse.value, numeroSecu.value)
+    item.infirmier = this.infirmier;
     this.service.postPatient(item).subscribe(resu => {
       console.log(item)
     }, (err: any) => {

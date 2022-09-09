@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Patient} from "../model/patient";
+import { InfirmierModel } from '../model/infirmier/infirmier.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,4 +35,9 @@ export class ServicePatientService {
   updatePatient:(item: Patient, id: string | undefined ) => Observable<Patient> = (item: Patient, id:string | undefined) => {
     return this.http.put(`${this.domaine}/patient/${id}`, item)
   }
+
+  getInfirmierById: (id: string|undefined) => Observable<InfirmierModel> = (id: string|undefined) => {
+    return this.http.get<InfirmierModel>(`${this.domaine}/infirmier/${id}`)
+  }
+
 }
