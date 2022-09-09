@@ -5,13 +5,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PatientPageComponent } from './component/patient-page/patient-page.component';
 import { InfirmierComponent } from './component/infirmier/infirmier.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    InfirmierComponent,
+    PatientPageComponent,
+    InfirmierComponent
   ],
   imports: [
     BrowserModule,
@@ -23,4 +25,5 @@ import { InfirmierComponent } from './component/infirmier/infirmier.component';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
