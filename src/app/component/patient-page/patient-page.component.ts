@@ -9,7 +9,18 @@ import {ServicePatientService} from "../../service/service-patient.service";
 })
 export class PatientPageComponent implements OnInit {
 
+  // @ts-ignore
   patients: Patient[] = [new Patient()];
+
+  // @ts-ignore
+  patient: Patient = new Patient();
+
+  // @ts-ignore
+  patients2: Patient[] = [new Patient()];
+
+  showAllPatients: boolean = false;
+  displayFormCreate: boolean = false;
+
 
   constructor(private service: ServicePatientService) {
   }
@@ -18,14 +29,59 @@ export class PatientPageComponent implements OnInit {
     this.getAllPatient()
   }
 
-  getAllPatient = () =>{
-    // @ts-ignore
-    this.service.getAllPatient().subscribe((resu: any) =>{
-      this.patients = resu
-    }, (err: any) =>{
+  public showAllPatient() {
+    if (this.showAllPatients == false) {
+      this.showAllPatients= true;
+    } else {
+      this.showAllPatients = false;
+    }
+  }
+
+  public displayDetail(item: Patient){
+    item.detail = !item.detail;
+  }
+  public displayCreate(){
+    this.displayFormCreate = !this.displayFormCreate;
+  }
+
+  showUpdateForm(item: Patient) {
+    item.update = true
+  }
+
+  public getAllPatient = () => {
+    this.service.getAllPatient().subscribe(item => {
+      this.patients = item
+    }, (err: any) => {
       console.error(err)
     })
   }
+
+  getPatientById = (id: HTMLInputElement) => {
+    this.service.getPatientById(id.value).subscribe(resu => {
+      this.patient = resu;
+      console.log(this.patient);
+    })
+  }
+  getPatientByName = (name: HTMLInputElement) => {
+    this.service.getPatientByName(name.value).subscribe(resu => {
+      this.patients2 = resu;
+      console.log(this.patients2);
+    })
+  }
+  postPatient = (nom: HTMLInputElement, prenom: HTMLInputElement, dateNaissance: HTMLInputElement, sexe: HTMLInputElement, adresse: HTMLInputElement, numeroSecu: HTMLInputElement) => {
+    const item = new Patient(nom.value, prenom.value, dateNaissance.value, sexe.value, adresse.value, numeroSecu.value)
+    this.service.postPatient(item).subscribe(resu => {
+      console.log(item)
+    }, (err: any) => {
+      console.error(err)
+    });
+  }
+  updatePatient = (id: string|undefined, nom: HTMLInputElement, prenom: HTMLInputElement, dateNaissance: HTMLInputElement, sexe: HTMLInputElement, adresse: HTMLInputElement, numeroSecu: HTMLInputElement) => {
+    const item = new Patient(nom.value, prenom.value, dateNaissance.value, sexe.value, adresse.value, numeroSecu.value)
+    this.service.updatePatient(item, id).subscribe();
+  }
+
+
   deletePatient = (id: string | undefined) => {
     this.service.deletePatient(id).subscribe(ok => {
       this.patients = this.patients.filter(item => item.id != id)
