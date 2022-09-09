@@ -109,9 +109,13 @@
     <input type="text" #sexe> Sexe <br>
     <input type="text" #adresse> Adresse <br>
     <input type="text" #numeroSecu> Numéro de sécurité Sociale <br>
-    <input type="text" #nomInfirmier> Nom infirmier <br>
-    <button type="submit" (click)="postPatient(nom, prenom, dateNaissance, sexe, adresse, numeroSecu)"> Ajouter un
-      patient
+    <input type="text" #idInfirmier> Id infirmier <button type="submit" (click)="getInfirmierById(idInfirmier.value)" (click)="switchShowInfirmier()">Confirmer l'infirmier</button> <br>
+    <div *ngIf="showInfirmier">
+      <p>{{infirmier.nom}} {{infirmier.prenom}}</p>
+      <p>{{infirmier.numPro}}</p>
+      <p>{{infirmier.telMobile}}</p>
+    </div>
+    <button type="submit" (click)="postPatient(nom, prenom, dateNaissance, sexe, adresse, numeroSecu)"> Ajouter un patient
     </button>
   </form>
 </div>
