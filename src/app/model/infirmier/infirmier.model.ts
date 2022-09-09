@@ -17,4 +17,5 @@ export class InfirmierModel {
     this.telMobile = telMobile;
     this.telFixe = telFixe;
   }
+
 }

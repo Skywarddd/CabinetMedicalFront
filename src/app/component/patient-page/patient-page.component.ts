@@ -16,7 +16,7 @@ export class PatientPageComponent implements OnInit {
   patient: Patient = new Patient();
 
   // @ts-ignore
-  patients2: Patient[] = [new Patient()];
+  patients2!: Patient[];
 
   showAllPatients: boolean = false;
   displayFormCreate: boolean = false;

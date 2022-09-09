@@ -1,3 +1,5 @@
+import { InfirmierModel } from "./infirmier/infirmier.model";
+
 export class Patient{
 
 
@@ -12,6 +14,7 @@ export class Patient{
   public isActive?: boolean;
   public detail?: boolean = false;
   public update?: boolean = false;
+  public infirmier?: any;
 
 
   constructor(nom: string ="", prenom: string="",adresse: string = "",dateDeNaissance: string = "", sexe: string="",numeroSecu: string ="") {

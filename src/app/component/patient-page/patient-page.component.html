@@ -9,7 +9,7 @@
           <li> {{item.dateDeNaissance}} </li>
           <li> {{item.sexe}} </li>
           <li> {{item.numeroSecu}} </li>
-          <li>{{item.id}}</li>
+          <li>{{item.infirmier.nom}} {{item.infirmier.prenom}}</li>
           <button (click)="showUpdateForm(item)">Modifier</button>
           <form *ngIf="item.update">
             <input type="text" value={{item.prenom}} #Prenom> Prénom <br>
@@ -36,14 +36,14 @@
   <input type="text" #id>
   <button type="submit" (click)="getPatientById(id)">Chercher un patient</button>
   <br>
-  <ul>
+  <ul *ngIf="patient.id">
     <li *ngIf="patient.isActive"> {{patient.prenom}} {{patient.nom}}
       <ul *ngIf="patient.detail">
         <li> {{patient.adresse}} </li>
         <li> {{patient.dateDeNaissance}} </li>
         <li> {{patient.sexe}} </li>
         <li> {{patient.numeroSecu}} </li>
-        <li>{{patient.id}}</li>
+        <li>{{patient.infirmier.nom}} {{patient.infirmier.prenom}}</li>
         <button (click)="showUpdateForm(patient)">Modifier</button>
         <form *ngIf="patient.update">
           <input type="text" value={{patient.prenom}} #Prenom> Prénom <br>
@@ -55,10 +55,10 @@
           <button type="submit" (click)="updatePatient(patient.id, Nom,Prenom,adresse,dateNaissance,sexe,numeroSecu)">
             Envoyer
           </button>
-          <button (click)="displayDetail(patient)">Détails</button>
-          <button *ngIf="patient.nom" (click)="deletePatient(patient.id)"> Supprimer le patient</button>
         </form>
       </ul>
+      <button (click)="displayDetail(patient)">Détails</button>
+      <button *ngIf="patient.nom" (click)="deletePatient(patient.id)"> Supprimer le patient</button>
     </li>
   </ul>
 </div>
@@ -75,7 +75,7 @@
         <li> {{item.dateDeNaissance}} </li>
         <li> {{item.sexe}} </li>
         <li> {{item.numeroSecu}} </li>
-        <li>{{item.id}}</li>
+        <li>{{item.infirmier.nom}} {{item.infirmier.prenom}}</li>
         <button (click)="showUpdateForm(item)">Modifier</button>
         <form *ngIf="item.update">
           <input type="text" value={{item.prenom}} #Prenom> Prénom <br>
@@ -87,10 +87,10 @@
           <button type="submit" (click)="updatePatient(item.id, Nom,Prenom,adresse,dateNaissance,sexe,numeroSecu)">
             Envoyer
           </button>
-          <button (click)="displayDetail(item)">Détails</button>
-          <button *ngIf="item.isActive" (click)="deletePatient(item.id)"> Supprimer le patient</button>
         </form>
       </ul>
+      <button (click)="displayDetail(item)">Détails</button>
+      <button *ngIf="item.isActive" (click)="deletePatient(item.id)"> Supprimer le patient</button>
     </li>
   </ul>
 </div>
@@ -105,6 +105,7 @@
     <input type="text" #sexe> Sexe <br>
     <input type="text" #adresse> Adresse <br>
     <input type="text" #numeroSecu> Numéro de sécurité Sociale <br>
+    <input type="text" #nomInfirmier> Nom infirmier <br>
     <button type="submit" (click)="postPatient(nom, prenom, dateNaissance, sexe, adresse, numeroSecu)"> Ajouter un
       patient
     </button>
