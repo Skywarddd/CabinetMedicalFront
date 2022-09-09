@@ -1,0 +1,5 @@
+<h3>Ajouter un déplacement</h3>
+<form [formGroup]="deplacementForm">
+    <input id="cout" type="number" formControlName="cout">
+    <button type="submit" (click)="postDeplacement()">Ajouter</button>
+</form>
