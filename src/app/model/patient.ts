@@ -1,7 +1,6 @@
 import { InfirmierModel } from "./infirmier/infirmier.model";
 
-export class Patient{
-
+export class Patient {
 
 
   public id?: string;
@@ -15,9 +14,10 @@ export class Patient{
   public detail?: boolean = false;
   public update?: boolean = false;
   public infirmier?: any;
+  public deplacement?: any;
 
 
-  constructor(nom: string ="", prenom: string="",adresse: string = "",dateDeNaissance: string = "", sexe: string="",numeroSecu: string ="") {
+  constructor(nom: string = "", prenom: string = "", adresse: string = "", dateDeNaissance: string = "", sexe: string = "", numeroSecu: string = "") {
     this.nom = nom;
     this.prenom = prenom;
     this.adresse = adresse;

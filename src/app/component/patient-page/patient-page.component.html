@@ -9,7 +9,7 @@
           <li> {{item.dateDeNaissance}} </li>
           <li> {{item.sexe}} </li>
           <li> {{item.numeroSecu}} </li>
-          <li>{{item.infirmier.nom}} {{item.infirmier.prenom}}</li>
+          <li> Suivi par : {{item.infirmier.nom}} {{item.infirmier.prenom}}</li>
           <button (click)="showUpdateForm(item)">Modifier</button>
           <form *ngIf="item.update">
             <input type="text" value={{item.prenom}} #Prenom> Prénom <br>
@@ -43,7 +43,9 @@
         <li> {{patient.dateDeNaissance}} </li>
         <li> {{patient.sexe}} </li>
         <li> {{patient.numeroSecu}} </li>
-        <li>{{patient.infirmier.nom}} {{patient.infirmier.prenom}}</li>
+        <li> Suivi par : {{patient.infirmier.nom}} {{patient.infirmier.prenom}}</li>
+        <li>{{patient.deplacement.cout}} €</li>
+        <li>{{patient.deplacement.date | date:"dd/MM/yyyy HH:mm"}}</li>
         <button (click)="showUpdateForm(patient)">Modifier</button>
         <form *ngIf="patient.update">
           <input type="text" value={{patient.prenom}} #Prenom> Prénom <br>
@@ -75,7 +77,9 @@
         <li> {{item.dateDeNaissance}} </li>
         <li> {{item.sexe}} </li>
         <li> {{item.numeroSecu}} </li>
-        <li>{{item.infirmier.nom}} {{item.infirmier.prenom}}</li>
+        <li> Suivi par : {{item.infirmier.nom}} {{item.infirmier.prenom}}</li>
+        <li>{{item.deplacement.cout}} €</li>
+        <li>{{item.deplacement.date | date:"dd/MM/yyyy HH:mm"}}</li>
         <button (click)="showUpdateForm(item)">Modifier</button>
         <form *ngIf="item.update">
           <input type="text" value={{item.prenom}} #Prenom> Prénom <br>
@@ -110,6 +114,10 @@
       patient
     </button>
   </form>
+</div>
+
+<div>
+
 </div>
 
 

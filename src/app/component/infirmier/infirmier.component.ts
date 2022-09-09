@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InfirmierModel } from 'src/app/model/infirmier/infirmier.model';
 import { InfirmierService } from 'src/app/service/infirmier.service';
+import {Patient} from "../../model/patient";
 
 @Component({
   selector: 'app-infirmier',
@@ -12,6 +13,7 @@ export class InfirmierComponent implements OnInit {
   infirmiers!: InfirmierModel[];
 
   infirmierId: InfirmierModel = new InfirmierModel;
+  patientId: Patient = new Patient();
 
   infirmiersNom!: InfirmierModel[];
 
@@ -49,7 +51,7 @@ this.service.getInfirmiers().subscribe((resu: any) => {
       console.error(err)
     })
   }
-  
+
 //add avec le constructeur plein
   addInfirmier = (nom: HTMLInputElement, prenom: HTMLInputElement, numPro: HTMLInputElement, telMobile: HTMLInputElement, telFixe: HTMLInputElement) => {
     const item = new InfirmierModel(nom.value, prenom.value, numPro.value, telMobile.value, telFixe.value)
@@ -72,6 +74,14 @@ this.service.getInfirmiers().subscribe((resu: any) => {
   delete = (id: string|undefined) => {
     this.service.deleteInfirmier(id).subscribe(ok => {
       this.infirmiers = this.infirmiers.filter(item => item.id != id)
+    })
+  }
+  getPatientByDeplacement = (id: string|undefined) =>{
+    this.service.getPatientByDeplacement(id).subscribe((resu: any) => {
+      this.patientId = resu;
+      console.log(resu)
+    }, (err: any) => {
+      console.error(err)
     })
   }
 

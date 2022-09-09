@@ -1,88 +1,111 @@
 <h3>Infirmiers</h3>
 <div>
-    <ul *ngFor="let item of infirmiers">
-        <li *ngIf="item.active"> {{item.nom}} {{item.prenom}}
-            <ul *ngIf="item.details">
-                <li>{{item.numPro}}</li>
-                <li>{{item.telMobile}}</li>
-                <li>{{item.telFixe}}</li>
-                <button (click)="switchAfficherUpdateForm(item)">Modifier</button>
-                <form *ngIf="item.update">
-                    <input type="text" value={{item.nom}} #updNom> Nom <br>
-                    <input type="text" value={{item.prenom}} #updPrenom> Prénom <br>
-                    <input type="text" value={{item.numPro}} #updNumPro> Numéro professionnel <br>
-                    <input type="text" value={{item.telMobile}} #updTelMobile> Téléphone mobile <br>
-                    <input type="text" value={{item.telFixe}} #updTelFixe> Téléphone fixe <br>
-                    <button type="submit" (click)="updateInfirmier(item.id,updNom,updPrenom,updNumPro,updTelMobile,updTelFixe)">Envoyer</button>
-                </form>
-            </ul>
-            <button (click)="switchAfficherDetails(item)">Details</button>
-            <button (click)="delete(item.id)">Supprimer</button>           
-        </li>
-    </ul>
+  <ul *ngFor="let item of infirmiers">
+    <li *ngIf="item.active"> {{item.nom}} {{item.prenom}}
+      <ul *ngIf="item.details">
+        <li>{{item.numPro}}</li>
+        <li>{{item.telMobile}}</li>
+        <li>{{item.telFixe}}</li>
+        <button (click)="switchAfficherUpdateForm(item)">Modifier</button>
+        <form *ngIf="item.update">
+          <input type="text" value={{item.nom}} #updNom> Nom <br>
+          <input type="text" value={{item.prenom}} #updPrenom> Prénom <br>
+          <input type="text" value={{item.numPro}} #updNumPro> Numéro professionnel <br>
+          <input type="text" value={{item.telMobile}} #updTelMobile> Téléphone mobile <br>
+          <input type="text" value={{item.telFixe}} #updTelFixe> Téléphone fixe <br>
+          <button type="submit" (click)="updateInfirmier(item.id,updNom,updPrenom,updNumPro,updTelMobile,updTelFixe)">
+            Envoyer
+          </button>
+        </form>
+      </ul>
+      <button (click)="switchAfficherDetails(item)">Details</button>
+      <button (click)="delete(item.id)">Supprimer</button>
+    </li>
+  </ul>
 </div>
 <button (click)="getInfirmiers()">Afficher tous les infirmiers</button>
 
 <div>Rechercher par ID</div>
 <form>
-    <input type="text" #id>
-    <button type="submit" (click)="getInfirmierById(id)">Recherche</button>
+  <input type="text" #id>
+  <button type="submit" (click)="getInfirmierById(id)">Recherche</button>
 </form>
 <ul>
-    <li *ngIf="infirmierId.id">{{infirmierId.nom}} {{infirmierId.prenom}}
-        <ul *ngIf="infirmierId.details">
-            <li>{{infirmierId.numPro}}</li>
-            <li>{{infirmierId.telMobile}}</li>
-            <li>{{infirmierId.telFixe}}</li>
-            <button (click)="switchAfficherUpdateForm(infirmierId)">Modifier</button>
-            <form *ngIf="infirmierId.update">
-                <input type="text" value={{infirmierId.nom}} #updNom> Nom <br>
-                <input type="text" value={{infirmierId.prenom}} #updPrenom> Prénom <br>
-                <input type="text" value={{infirmierId.numPro}} #updNumPro> Numéro professionnel <br>
-                <input type="text" value={{infirmierId.telMobile}} #updTelMobile> Téléphone mobile <br>
-                <input type="text" value={{infirmierId.telFixe}} #updTelFixe> Téléphone fixe <br>
-                <button type="submit" (click)="updateInfirmier(infirmierId.id,updNom,updPrenom,updNumPro,updTelMobile,updTelFixe)">Envoyer</button>
-            </form>
+  <li *ngIf="infirmierId.id">{{infirmierId.nom}} {{infirmierId.prenom}}
+    <ul *ngIf="infirmierId.details">
+      <li>{{infirmierId.numPro}}</li>
+      <li>{{infirmierId.telMobile}}</li>
+      <li>{{infirmierId.telFixe}}</li>
+      <li> Deplacements :
+        <ul *ngFor="let d of infirmierId.deplacements">
+          <li>{{d.cout}} €</li>
+          <li>{{d.date | date:"dd/MM/yyyy HH:mm"}}</li>
+          <button (click)="getPatientByDeplacement(d.id)"> Afficher patient</button>
+          {{patientId.prenom}} {{patientId.nom}}
         </ul>
-        <button (click)="switchAfficherDetails(infirmierId)">Details</button>
-        <button (click)="delete(infirmierId.id)">Supprimer</button>           
-    </li>
+      </li>
+      <button (click)="switchAfficherUpdateForm(infirmierId)">Modifier</button>
+      <form *ngIf="infirmierId.update">
+        <input type="text" value={{infirmierId.nom}} #updNom> Nom <br>
+        <input type="text" value={{infirmierId.prenom}} #updPrenom> Prénom <br>
+        <input type="text" value={{infirmierId.numPro}} #updNumPro> Numéro professionnel <br>
+        <input type="text" value={{infirmierId.telMobile}} #updTelMobile> Téléphone mobile <br>
+        <input type="text" value={{infirmierId.telFixe}} #updTelFixe> Téléphone fixe <br>
+        <button type="submit"
+                (click)="updateInfirmier(infirmierId.id,updNom,updPrenom,updNumPro,updTelMobile,updTelFixe)">Envoyer
+        </button>
+      </form>
+    </ul>
+    <button (click)="switchAfficherDetails(infirmierId)">Details</button>
+    <button (click)="delete(infirmierId.id)">Supprimer</button>
+  </li>
 </ul>
 
 <div>Rechercher par Nom</div>
 <form>
-    <input type="text" #nom>
-    <button type="submit" (click)="getInfirmierByNom(nom)">Recherche</button>
+  <input type="text" #nom>
+  <button type="submit" (click)="getInfirmierByNom(nom)">Recherche</button>
 </form>
 <ul *ngFor="let item of infirmiersNom">
-    <li *ngIf="item.active"> {{item.nom}} {{item.prenom}}
-        <ul *ngIf="item.details">
-            <li>{{item.numPro}}</li>
-            <li>{{item.telMobile}}</li>
-            <li>{{item.telFixe}}</li>
-            <button (click)="switchAfficherUpdateForm(item)">Modifier</button>
-            <form *ngIf="item.update">
-                <input type="text" value={{item.nom}} #updNom> Nom <br>
-                <input type="text" value={{item.prenom}} #updPrenom> Prénom <br>
-                <input type="text" value={{item.numPro}} #updNumPro> Numéro professionnel <br>
-                <input type="text" value={{item.telMobile}} #updTelMobile> Téléphone mobile <br>
-                <input type="text" value={{item.telFixe}} #updTelFixe> Téléphone fixe <br>
-                <button type="submit" (click)="updateInfirmier(item.id,updNom,updPrenom,updNumPro,updTelMobile,updTelFixe)">Envoyer</button>
-            </form>
-        </ul>
-        <button (click)="switchAfficherDetails(item)">Details</button>
-        <button (click)="delete(item.id)">Supprimer</button>
-    </li>
+  <li *ngIf="item.active"> {{item.nom}} {{item.prenom}}
+    <ul *ngIf="item.details">
+      <li>{{item.numPro}}</li>
+      <li>{{item.telMobile}}</li>
+      <li>{{item.telFixe}}</li>
+      <li> Deplacements :
+        <ul *ngFor="let d of item.deplacements">
+      <li>{{d.cout}} €</li>
+          <li>{{d.date | date:"dd/MM/yyyy HH:mm"}}</li>
+          <button (click)="getPatientByDeplacement(d.id)"> Afficher patient</button>
+          {{patientId.prenom}} {{patientId.nom}}
+    </ul>
+      </li>
+
+  <button (click)="switchAfficherUpdateForm(item)">Modifier</button>
+  <form *ngIf="item.update">
+    <input type="text" value={{item.nom}} #updNom> Nom <br>
+    <input type="text" value={{item.prenom}} #updPrenom> Prénom <br>
+    <input type="text" value={{item.numPro}} #updNumPro> Numéro professionnel <br>
+    <input type="text" value={{item.telMobile}} #updTelMobile> Téléphone mobile <br>
+    <input type="text" value={{item.telFixe}} #updTelFixe> Téléphone fixe <br>
+    <button type="submit" (click)="updateInfirmier(item.id,updNom,updPrenom,updNumPro,updTelMobile,updTelFixe)">
+      Envoyer
+    </button>
+  </form>
+</ul>
+<button (click)="switchAfficherDetails(item)">Details</button>
+<button (click)="delete(item.id)">Supprimer</button>
+</li>
 </ul>
 
 <button (click)="switchAfficherCreateForm()">Creer un nouveau profil infirmier</button>
 <form *ngIf="afficherCreateForm">
-    <input type="text" #nom> Nom <br>
-    <input type="text" #prenom> Prénom <br>
-    <input type="text" #numPro> Numéro professionnel <br>
-    <input type="text" #telMobile> Téléphone mobile <br>
-    <input type="text" #telFixe> Téléphone fixe <br>
-    <button type="submit" (click)="addInfirmier(nom,prenom,numPro,telMobile,telFixe)">Envoyer</button>
+  <input type="text" #nom> Nom <br>
+  <input type="text" #prenom> Prénom <br>
+  <input type="text" #numPro> Numéro professionnel <br>
+  <input type="text" #telMobile> Téléphone mobile <br>
+  <input type="text" #telFixe> Téléphone fixe <br>
+  <button type="submit" (click)="addInfirmier(nom,prenom,numPro,telMobile,telFixe)">Envoyer</button>
 </form>
 
 

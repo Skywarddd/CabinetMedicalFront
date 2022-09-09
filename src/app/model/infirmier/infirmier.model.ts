@@ -8,6 +8,7 @@ export class InfirmierModel {
   public active?: boolean;
   public details?: boolean = false;
   public update?: boolean = false;
+  public deplacements?: any[];
 
   public constructor(nom: string = '', prenom: string = '', numPro: string = '', telMobile: string = '', telFixe: string = '') {
     this.nom = nom;

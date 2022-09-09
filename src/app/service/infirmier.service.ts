@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { InfirmierModel } from '../model/infirmier/infirmier.model';
 import {HttpClient} from "@angular/common/http";
+import {Patient} from "../model/patient";
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,8 @@ export class InfirmierService {
 
   deleteInfirmier = (id: string|undefined) => {
     return this.http.delete(`${this.domaine}/infirmier/${id}`)
+  }
+  getPatientByDeplacement:(id:string|undefined) => Observable<Patient> = (id:string|undefined) => {
+    return this.http.get<Patient>(`${this.domaine}/patient/deplacement/${id}`)
   }
 }
