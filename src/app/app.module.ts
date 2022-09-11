@@ -11,6 +11,8 @@ import { PatientPageComponent } from './component/patient-page/patient-page.comp
 import { InfirmierComponent } from './component/infirmier/infirmier.component';
 import { HeaderComponent } from './component/header/header/header.component';
 import { HomePageComponent } from './component/home-page/home-page/home-page.component';
+import { NewInfirmierComponent } from './component/new-infirmier/new-infirmier.component';
+import { NewPatientComponent } from './component/new-patient/new-patient.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { HomePageComponent } from './component/home-page/home-page/home-page.com
     PatientPageComponent,
     InfirmierComponent,
     HeaderComponent,
-    HomePageComponent
+    HomePageComponent,
+    NewInfirmierComponent,
+    NewPatientComponent
   ],
   imports: [
     BrowserModule,

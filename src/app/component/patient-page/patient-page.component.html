@@ -1,131 +1,260 @@
-<div id="getAllPatient" xmlns="http://www.w3.org/1999/html">
-  <h3>Listes complètes des patients</h3>
-  <button (click)="showAllPatient()">Afficher tous les patients</button>
-  <div *ngIf="showAllPatients">
-    <ul *ngFor="let item of patients">
-      <li *ngIf="item.isActive">{{item.prenom}} {{item.nom }}
-        <ul *ngIf="item.detail">
-          <li> {{item.adresse}} </li>
-          <li> {{item.dateDeNaissance}} </li>
-          <li> {{item.sexe}} </li>
-          <li> {{item.numeroSecu}} </li>
-          <li> Suivi par : {{item.infirmier.nom}} {{item.infirmier.prenom}}</li>
-          <button (click)="showUpdateForm(item)">Modifier</button>
-          <form *ngIf="item.update">
-            <input type="text" value={{item.prenom}} #Prenom> Prénom <br>
-            <input type="text" value={{item.nom}} #Nom> Nom <br>
-            <input type="text" value={{item.adresse}} #adresse> Numéro professionnel <br>
-            <input type="text" value={{item.dateDeNaissance}} #dateNaissance> Téléphone mobile <br>
-            <input type="text" value={{item.sexe}} #sexe> Téléphone mobile <br>
-            <input type="text" value={{item.numeroSecu}} #numeroSecu> Téléphone fixe <br>
-            <button type="submit" (click)="updatePatient(item.id, Nom,Prenom,adresse,dateNaissance,sexe,numeroSecu)">
-              Envoyer
+<main class="main">
+  <div class="main_content">
+    <div id="getAllPatient" xmlns="http://www.w3.org/1999/html">
+      <h1 class="page-title">Patients</h1>
+      <button (click)="addPatientLink()" class="list-item_button">Ajouter</button>
+      <div>
+        <ul *ngFor="let item of patients" class="list-item">
+          <li *ngIf="item.isActive">
+            {{ item.prenom }} {{ item.nom }}
+            <ul *ngIf="item.detail">
+              <li>{{ item.adresse }}</li>
+              <li>{{ item.dateDeNaissance }}</li>
+              <li>{{ item.sexe }}</li>
+              <li>{{ item.numeroSecu }}</li>
+              <li>
+                Suivi par : {{ item.infirmier.nom }} {{ item.infirmier.prenom }}
+              </li>
+              <button (click)="showUpdateForm(item)" class="list-item_button">
+                Modifier
+              </button>
+              <form *ngIf="item.update" class="search-form">
+                <input type="text" value="{{ item.prenom }}" #Prenom /> Prénom
+                <br />
+                <input type="text" value="{{ item.nom }}" #Nom /> Nom <br />
+                <input type="text" value="{{ item.adresse }}" #adresse /> Numéro
+                professionnel <br />
+                <input
+                  type="text"
+                  value="{{ item.dateDeNaissance }}"
+                  #dateNaissance
+                />
+                Téléphone mobile <br />
+                <input type="text" value="{{ item.sexe }}" #sexe /> Téléphone
+                mobile <br />
+                <input type="text" value="{{ item.numeroSecu }}" #numeroSecu />
+                Téléphone fixe <br />
+                <button class="list-item_button"
+                  type="submit"
+                  (click)="
+                    updatePatient(
+                      item.id,
+                      Nom,
+                      Prenom,
+                      adresse,
+                      dateNaissance,
+                      sexe,
+                      numeroSecu
+                    )
+                  "
+                >
+                  Envoyer
+                </button>
+              </form>
+            </ul>
+            <button (click)="displayDetail(item)" class="list-item_button">
+              Détails
             </button>
-          </form>
+            <button (click)="deletePatient(item.id)" class="list-item_button">
+              Supprimer
+            </button>
+          </li>
         </ul>
-        <button (click)="displayDetail(item)">Détails</button>
-        <button (click)="deletePatient(item.id)"> Supprimer le patient</button>
-      </li>
-    </ul>
-  </div>
-</div>
-
-
-<div id="getById">
-  <h3>Chercher un patient par Id</h3>
-  <input type="text" #id>
-  <button type="submit" (click)="getPatientById(id)">Chercher un patient</button>
-  <br>
-  <ul *ngIf="patient.id">
-    <li *ngIf="patient.isActive"> {{patient.prenom}} {{patient.nom}}
-      <ul *ngIf="patient.detail">
-        <li> {{patient.adresse}} </li>
-        <li> {{patient.dateDeNaissance}} </li>
-        <li> {{patient.sexe}} </li>
-        <li> {{patient.numeroSecu}} </li>
-        <li> Suivi par : {{patient.infirmier.nom}} {{patient.infirmier.prenom}}</li>
-        <li>{{patient.deplacement.cout}} €</li>
-        <li>{{patient.deplacement.date | date:"dd/MM/yyyy HH:mm"}}</li>
-        <button (click)="showUpdateForm(patient)">Modifier</button>
-        <form *ngIf="patient.update">
-          <input type="text" value={{patient.prenom}} #Prenom> Prénom <br>
-          <input type="text" value={{patient.nom}} #Nom> Nom <br>
-          <input type="text" value={{patient.adresse}} #adresse> Numéro professionnel <br>
-          <input type="text" value={{patient.dateDeNaissance}} #dateNaissance> Téléphone mobile <br>
-          <input type="text" value={{patient.sexe}} #sexe> Téléphone mobile <br>
-          <input type="text" value={{patient.numeroSecu}} #numeroSecu> Téléphone fixe <br>
-          <button type="submit" (click)="updatePatient(patient.id, Nom,Prenom,adresse,dateNaissance,sexe,numeroSecu)">
-            Envoyer
-          </button>
-        </form>
-      </ul>
-      <button (click)="displayDetail(patient)">Détails</button>
-      <button *ngIf="patient.nom" (click)="deletePatient(patient.id)"> Supprimer le patient</button>
-    </li>
-  </ul>
-</div>
-
-
-<div id="getByName">
-  <h3>Chercher un patient par nom</h3>
-  <input type="text" #name>
-  <button type="submit" (click)="getPatientByName(name)"> Chercher un patient</button>
-  <ul *ngFor="let item of patients2">
-    <li *ngIf="item.isActive"> {{item.prenom}} {{item.nom }}
-      <ul *ngIf="item.detail">
-        <li> {{item.adresse}} </li>
-        <li> {{item.dateDeNaissance}} </li>
-        <li> {{item.sexe}} </li>
-        <li> {{item.numeroSecu}} </li>
-        <li> Suivi par : {{item.infirmier.nom}} {{item.infirmier.prenom}}</li>
-        <li>{{item.deplacement.cout}} €</li>
-        <li>{{item.deplacement.date | date:"dd/MM/yyyy HH:mm"}}</li>
-        <button (click)="showUpdateForm(item)">Modifier</button>
-        <form *ngIf="item.update">
-          <input type="text" value={{item.prenom}} #Prenom> Prénom <br>
-          <input type="text" value={{item.nom}} #Nom> Nom <br>
-          <input type="text" value={{item.adresse}} #adresse> Numéro professionnel <br>
-          <input type="text" value={{item.dateDeNaissance}} #dateNaissance> Téléphone mobile <br>
-          <input type="text" value={{item.sexe}} #sexe> Téléphone mobile <br>
-          <input type="text" value={{item.numeroSecu}} #numeroSecu> Téléphone fixe <br>
-          <button type="submit" (click)="updatePatient(item.id, Nom,Prenom,adresse,dateNaissance,sexe,numeroSecu)">
-            Envoyer
-          </button>
-        </form>
-      </ul>
-      <button (click)="displayDetail(item)">Détails</button>
-      <button *ngIf="item.isActive" (click)="deletePatient(item.id)"> Supprimer le patient</button>
-    </li>
-  </ul>
-</div>
-
-<div id="postPatient">
-  <h3>Ajouter un patient</h3>
-  <button (click)="displayCreate()">Créer un patient</button>
-  <form *ngIf="displayFormCreate">
-    <input type="text" #nom> Nom <br>
-    <input type="text" #prenom> Prenom <br>
-    <input type="text" #dateNaissance> Date de naissance <br>
-    <input type="text" #sexe> Sexe <br>
-    <input type="text" #adresse> Adresse <br>
-    <input type="text" #numeroSecu> Numéro de sécurité Sociale <br>
-    <input type="text" #idInfirmier> Id infirmier <button type="submit" (click)="getInfirmierById(idInfirmier.value)" (click)="switchShowInfirmier()">Confirmer l'infirmier</button> <br>
-    <div *ngIf="showInfirmier">
-      <p>{{infirmier.nom}} {{infirmier.prenom}}</p>
-      <p>{{infirmier.numPro}}</p>
-      <p>{{infirmier.telMobile}}</p>
+      </div>
     </div>
-    <button type="submit" (click)="postPatient(nom, prenom, dateNaissance, sexe, adresse, numeroSecu)"> Ajouter un patient
-    </button>
-  </form>
-</div>
 
-<div>
+    <div id="getById">
+      <form class="search-form">
+        <h3>Chercher un patient par Id</h3>
+        <input type="text" #id />
+        <button
+          type="submit"
+          (click)="getPatientById(id)"
+          class="list-item_button"
+        >
+          Chercher un patient
+        </button>
+      </form>
 
-</div>
+      <ul *ngIf="patient.id" class="list-item">
+        <li *ngIf="patient.isActive">
+          {{ patient.prenom }} {{ patient.nom }}
+          <ul *ngIf="patient.detail">
+            <li>{{ patient.adresse }}</li>
+            <li>{{ patient.dateDeNaissance }}</li>
+            <li>{{ patient.sexe }}</li>
+            <li>{{ patient.numeroSecu }}</li>
+            <li>
+              Suivi par : {{ patient.infirmier.nom }}
+              {{ patient.infirmier.prenom }}
+            </li>
+            <li>{{ patient.deplacement.cout }} €</li>
+            <li>{{ patient.deplacement.date | date: "dd/MM/yyyy HH:mm" }}</li>
+            <button (click)="showUpdateForm(patient)" class="list-item_button">
+              Modifier
+            </button>
+            <form *ngIf="patient.update" class="search-form">
+              <input type="text" value="{{ patient.prenom }}" #Prenom /> Prénom
+              <br />
+              <input type="text" value="{{ patient.nom }}" #Nom /> Nom <br />
+              <input type="text" value="{{ patient.adresse }}" #adresse />
+              Numéro professionnel <br />
+              <input
+                type="text"
+                value="{{ patient.dateDeNaissance }}"
+                #dateNaissance
+              />
+              Téléphone mobile <br />
+              <input type="text" value="{{ patient.sexe }}" #sexe /> Téléphone
+              mobile <br />
+              <input type="text" value="{{ patient.numeroSecu }}" #numeroSecu />
+              Téléphone fixe <br />
+              <button
+                class="list-item_button"
+                type="submit"
+                (click)="
+                  updatePatient(
+                    patient.id,
+                    Nom,
+                    Prenom,
+                    adresse,
+                    dateNaissance,
+                    sexe,
+                    numeroSecu
+                  )
+                "
+              >
+                Envoyer
+              </button>
+            </form>
+          </ul>
+          <button (click)="displayDetail(patient)" class="list-item_button">
+            Détails
+          </button>
+          <button
+            *ngIf="patient.nom"
+            (click)="deletePatient(patient.id)"
+            class="list-item_button"
+          >
+            Supprimer
+          </button>
+        </li>
+      </ul>
+    </div>
 
+    <div id="getByName">
+      
+      <form class="search-form">
+        <h3>Chercher un patient par nom</h3>
+        <input type="text" #name />
+        <button
+          type="submit"
+          (click)="getPatientByName(name)"
+          class="list-item_button"
+        >
+          Chercher un patient
+        </button>
+      </form>
+      <ul *ngFor="let item of patients2" class="list-item">
+        <li *ngIf="item.isActive">
+          {{ item.prenom }} {{ item.nom }}
+          <ul *ngIf="item.detail">
+            <li>{{ item.adresse }}</li>
+            <li>{{ item.dateDeNaissance }}</li>
+            <li>{{ item.sexe }}</li>
+            <li>{{ item.numeroSecu }}</li>
+            <li>
+              Suivi par : {{ item.infirmier.nom }} {{ item.infirmier.prenom }}
+            </li>
+            <li>{{ item.deplacement.cout }} €</li>
+            <li>{{ item.deplacement.date | date: "dd/MM/yyyy HH:mm" }}</li>
+            <button (click)="showUpdateForm(item)" class="list-item_button">
+              Modifier
+            </button>
+            <form *ngIf="item.update" class="search-form">
+              <input type="text" value="{{ item.prenom }}" #Prenom /> Prénom
+              <br />
+              <input type="text" value="{{ item.nom }}" #Nom /> Nom <br />
+              <input type="text" value="{{ item.adresse }}" #adresse /> Numéro
+              professionnel <br />
+              <input
+                type="text"
+                value="{{ item.dateDeNaissance }}"
+                #dateNaissance
+              />
+              Téléphone mobile <br />
+              <input type="text" value="{{ item.sexe }}" #sexe /> Téléphone
+              mobile <br />
+              <input type="text" value="{{ item.numeroSecu }}" #numeroSecu />
+              Téléphone fixe <br />
+              <button
+                class="list-item_button"
+                type="submit"
+                (click)="
+                  updatePatient(
+                    item.id,
+                    Nom,
+                    Prenom,
+                    adresse,
+                    dateNaissance,
+                    sexe,
+                    numeroSecu
+                  )
+                "
+              >
+                Envoyer
+              </button>
+            </form>
+          </ul>
+          <button (click)="displayDetail(item)" class="list-item_button">
+            Détails
+          </button>
+          <button
+            *ngIf="item.isActive"
+            (click)="deletePatient(item.id)"
+            class="list-item_button"
+          >
+            Supprimer
+          </button>
+        </li>
+      </ul>
+    </div>
 
+    <!-- <div id="postPatient">
+      <h3>Ajouter un patient</h3>
+      <button (click)="displayCreate()">Créer un patient</button>
+      <form *ngIf="displayFormCreate">
+        <input type="text" #nom /> Nom <br />
+        <input type="text" #prenom /> Prenom <br />
+        <input type="text" #dateNaissance /> Date de naissance <br />
+        <input type="text" #sexe /> Sexe <br />
+        <input type="text" #adresse /> Adresse <br />
+        <input type="text" #numeroSecu /> Numéro de sécurité Sociale <br />
+        <input type="text" #idInfirmier /> Id infirmier
+        <button
+          type="submit"
+          (click)="getInfirmierById(idInfirmier.value)"
+          (click)="switchShowInfirmier()"
+        >
+          Confirmer l'infirmier
+        </button>
+        <br />
+        <div *ngIf="showInfirmier">
+          <p>{{ infirmier.nom }} {{ infirmier.prenom }}</p>
+          <p>{{ infirmier.numPro }}</p>
+          <p>{{ infirmier.telMobile }}</p>
+        </div>
+        <button
+          type="submit"
+          (click)="
+            postPatient(nom, prenom, dateNaissance, sexe, adresse, numeroSecu)
+          "
+        >
+          Ajouter un patient
+        </button>
+      </form>
+    </div> -->
 
-
-
-
+    <div></div>
+  </div>
+</main>

@@ -10,9 +10,13 @@
     justify-content: space-between;
     align-items: center;
 }
+.div-info {
+    display: flex;
+}
 .site-title {
     font-family: 'Paytone One', sans-serif;
-    font-size: 33px;
+    font-size: 32px;
+    padding: 0 0 0 10px;
 }
 .navbar{
     display: flex;

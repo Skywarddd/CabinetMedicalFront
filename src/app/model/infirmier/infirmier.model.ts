@@ -2,7 +2,7 @@ export class InfirmierModel {
   public id?: string;
   public nom?: string;
   public prenom?: string;
-  public numPro?: string;
+  public numPro?: number;
   public telMobile?: string;
   public telFixe?: string;
   public active?: boolean;
@@ -10,7 +10,7 @@ export class InfirmierModel {
   public update?: boolean = false;
   public deplacements?: any[];
 
-  public constructor(nom: string = '', prenom: string = '', numPro: string = '', telMobile: string = '', telFixe: string = '') {
+  public constructor(nom: string = '', prenom: string = '', numPro: number = 0, telMobile: string = '', telFixe: string = '') {
     this.nom = nom;
     this.prenom = prenom;
     this.active = true;

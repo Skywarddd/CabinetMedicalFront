@@ -1,13 +1,18 @@
-<h1>Déplacements</h1>
-<a routerLink="/deplacement/create">Ajouter</a>
-<div *ngFor="let deplacement of deplacements">
-    <p>Coût: {{ deplacement.cout }}</p>
-    <p>Date: {{ deplacement.date | date: "le dd-MM-yyyy à HH:mm:ss"}}</p>
-    <button (click)="deleteDeplacement(deplacement.id)">Supprimer</button>
-    <button (click)="updateForm()">Modifier</button>
-    <form *ngIf="isUpdate" [formGroup]="deplacementFormUpdate">
-        <input id="updateCout" type="number" formControlName="cout">
-        <button type="submit" (click)="putDeplacement(deplacement.id)">Valider</button>
-    </form>
-    <hr>
-</div>
+<main class="main">
+  <div class="main_content">
+    <h1 class="page-title">Déplacements</h1>
+    <button class="list-item_button" (click)="addDeplacementLink()">Ajouter</button>
+    <div *ngFor="let deplacement of deplacements" class="list-item">
+      <p>Coût: {{ deplacement.cout }}</p>
+      <p>Date: {{ deplacement.date | date: "le dd-MM-yyyy à HH:mm:ss" }}</p>
+      <button (click)="deleteDeplacement(deplacement.id)" class="list-item_button">Supprimer</button>
+      <button (click)="updateForm()" class="list-item_button">Modifier</button>
+      <form *ngIf="isUpdate" [formGroup]="deplacementFormUpdate" class="search-form">
+        <input id="updateCout" type="number" formControlName="cout" />
+        <button type="submit" (click)="putDeplacement(deplacement.id)" class="list-item_button">
+          Valider
+        </button>
+      </form>
+    </div>
+  </div>
+</main>

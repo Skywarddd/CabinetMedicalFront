@@ -9,14 +9,6 @@
 .page-title {
     font-family: 'Paytone One', sans-serif;
     font-size: 33px;
-    margin: 0 0 20px 0;
-}
-.list-item {
-    padding: 10px;
-    border-bottom: 1px solid #adadad;
-}
-.list-item li {
-    margin: 10px 0;
 }
 .list-item_button {
     border: none;

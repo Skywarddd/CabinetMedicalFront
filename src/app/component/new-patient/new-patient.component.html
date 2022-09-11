@@ -1,0 +1,38 @@
+<main class="main">
+  <div class="main_content">
+    <div id="postPatient">
+      <h1 class="page-title">Ajouter un patient</h1>
+      <!-- <button (click)="displayCreate()">Créer un patient</button> -->
+      <form class="search-form">
+        <input type="text" #nom /> Nom <br />
+        <input type="text" #prenom /> Prenom <br />
+        <input type="text" #dateNaissance /> Date de naissance <br />
+        <input type="text" #sexe /> Sexe <br />
+        <input type="text" #adresse /> Adresse <br />
+        <input type="text" #numeroSecu /> Numéro de sécurité Sociale <br />
+        <input type="text" #idInfirmier /> Id infirmier
+        <button class="list-item_button"
+          type="submit"
+          (click)="getInfirmierById(idInfirmier.value)"
+          (click)="switchShowInfirmier()"
+        >
+          Confirmer l'infirmier
+        </button>
+        <br />
+        <div *ngIf="showInfirmier">
+          <p>{{ infirmier.nom }} {{ infirmier.prenom }}</p>
+          <p>{{ infirmier.numPro }}</p>
+          <p>{{ infirmier.telMobile }}</p>
+        </div>
+        <button class="list-item_button"
+          type="submit"
+          (click)="
+            postPatient(nom, prenom, dateNaissance, sexe, adresse, numeroSecu)
+          "
+        >
+          Ajouter un patient
+        </button>
+      </form>
+    </div>
+  </div>
+</main>

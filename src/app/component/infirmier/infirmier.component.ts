@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { InfirmierModel } from 'src/app/model/infirmier/infirmier.model';
 import { InfirmierService } from 'src/app/service/infirmier/infirmier.service';
 import {Patient} from "../../model/patient/patient";
@@ -19,9 +20,10 @@ export class InfirmierComponent implements OnInit {
 
   afficherCreateForm: boolean = false;
 
-  constructor(private service: InfirmierService) { }
+  constructor(private service: InfirmierService, private router: Router) { }
 
   ngOnInit(): void {
+    this.getInfirmiers();
   }
 
   getInfirmiers = () => {
@@ -54,7 +56,7 @@ this.service.getInfirmiers().subscribe((resu: any) => {
 
 //add avec le constructeur plein
   addInfirmier = (nom: HTMLInputElement, prenom: HTMLInputElement, numPro: HTMLInputElement, telMobile: HTMLInputElement, telFixe: HTMLInputElement) => {
-    const item = new InfirmierModel(nom.value, prenom.value, numPro.value, telMobile.value, telFixe.value)
+    const item = new InfirmierModel(nom.value, prenom.value, Number(numPro.value), telMobile.value, telFixe.value)
     this.service.createInfirmier(item).subscribe(resu => {this.getInfirmiers()},
       (err: any) => {
         console.error(err)
@@ -67,7 +69,7 @@ this.service.getInfirmiers().subscribe((resu: any) => {
   }
 
   updateInfirmier = (id: string|undefined, nom: HTMLInputElement, prenom: HTMLInputElement, numPro: HTMLInputElement, telMobile: HTMLInputElement, telFixe: HTMLInputElement) => {
-    const item = new InfirmierModel(nom.value, prenom.value, numPro.value, telMobile.value, telFixe.value)
+    const item = new InfirmierModel(nom.value, prenom.value, Number(numPro.value), telMobile.value, telFixe.value)
     this.service.updateInfirmier(item, id).subscribe();
   }
 
@@ -95,5 +97,9 @@ this.service.getInfirmiers().subscribe((resu: any) => {
 
   switchAfficherDetails(item: InfirmierModel) {
     item.details = !item.details;
+  }
+
+  addInfirmierLink(): void {
+    this.router.navigateByUrl('/infirmier/create');
   }
 }

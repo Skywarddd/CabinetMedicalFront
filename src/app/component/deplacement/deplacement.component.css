@@ -1,0 +1,38 @@
+.main{
+    width: 100%;
+}
+.main_content {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+.page-title {
+    font-family: 'Paytone One', sans-serif;
+    font-size: 33px;
+    margin: 0 0 20px 0;
+}
+.list-item {
+    padding: 10px;
+    border-bottom: 1px solid #adadad;
+}
+.list-item p {
+    margin: 10px 0;
+}
+.list-item_button {
+    border: none;
+    padding: 7px 25px;
+    border-radius: 5px;
+    background-color: #FCDC04;
+    color: #000;
+    font-weight: 700;
+    margin-right: 10px;
+}
+.search-form {
+    margin: 20px 0;
+}
+.search-form input {
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid #adadad;
+    margin: 10px 5px 10px 0;
+}

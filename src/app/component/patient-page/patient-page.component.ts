@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import { InfirmierModel } from 'src/app/model/infirmier/infirmier.model';
 import {Patient} from "../../model/patient/patient";
 import {ServicePatientService} from "../../service/patient/service-patient.service";
@@ -21,26 +22,26 @@ export class PatientPageComponent implements OnInit {
 
   infirmier!: InfirmierModel;
 
-  showAllPatients: boolean = false;
+  // showAllPatients: boolean = false;
   displayFormCreate: boolean = false;
 
   showInfirmier: boolean = false;
 
 
-  constructor(private service: ServicePatientService) {
+  constructor(private service: ServicePatientService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.getAllPatient()
   }
 
-  public showAllPatient() {
-    if (this.showAllPatients == false) {
-      this.showAllPatients= true;
-    } else {
-      this.showAllPatients = false;
-    }
-  }
+  // public showAllPatient() {
+  //   if (this.showAllPatients == false) {
+  //     this.showAllPatients= true;
+  //   } else {
+  //     this.showAllPatients = false;
+  //   }
+  // }
 
   public displayDetail(item: Patient){
     item.detail = !item.detail;
@@ -50,7 +51,7 @@ export class PatientPageComponent implements OnInit {
   }
 
   showUpdateForm(item: Patient) {
-    item.update = true
+    item.update = true;
   }
 
   switchShowInfirmier() {
@@ -104,5 +105,9 @@ export class PatientPageComponent implements OnInit {
     this.service.deletePatient(id).subscribe(ok => {
       this.patients = this.patients.filter(item => item.id != id)
     })
+  }
+
+  addPatientLink(): void {
+    this.router.navigateByUrl('/patient/create');
   }
 }

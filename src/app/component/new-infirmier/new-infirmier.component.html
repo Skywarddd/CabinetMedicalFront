@@ -1,0 +1,14 @@
+<main>
+  <div class="main_content">
+    <h1 class="page-title">Ajouter Infirmier</h1>
+    <form class="search-form">
+      <input type="text" #nom> Nom <br>
+      <input type="text" #prenom> Prénom <br>
+      <input type="text" #numPro> Numéro professionnel <br>
+      <input type="text" #telMobile> Téléphone mobile <br>
+      <input type="text" #telFixe> Téléphone fixe <br>
+      <button type="submit" (click)="addInfirmier(nom,prenom,numPro,telMobile,telFixe)" class="list-item_button">Envoyer</button>
+    </form>
+  </div>  
+</main>
+

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Deplacement } from 'src/app/model/deplacement/deplacement.model';
 import { DeplacementService } from 'src/app/service/deplacement/deplacement.service';
 
@@ -15,7 +16,7 @@ export class DeplacementComponent implements OnInit {
   deplacementFormUpdate!: FormGroup;
   isUpdate: boolean = false;
 
-  constructor(private service: DeplacementService, private formBuilder: FormBuilder) { }
+  constructor(private service: DeplacementService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.getDeplacements();
@@ -38,6 +39,10 @@ export class DeplacementComponent implements OnInit {
 
   updateForm(): void {
     this.isUpdate = !this.isUpdate;
+  }
+
+  addDeplacementLink(){
+    this.router.navigateByUrl("/deplacement/create")
   }
 
 }

@@ -1,5 +1,15 @@
-<h3>Ajouter un déplacement</h3>
-<form [formGroup]="deplacementForm">
-    <input id="cout" type="number" formControlName="cout">
-    <button type="submit" (click)="postDeplacement()">Ajouter</button>
-</form>
+<main class="main">
+  <div class="main_content">
+    <h1 class="page-title">Ajouter un déplacement</h1>
+    <form [formGroup]="deplacementForm" class="search-form">
+      <input id="cout" type="number" formControlName="cout" />
+      <button
+        type="submit"
+        (click)="postDeplacement()"
+        class="list-item_button"
+      >
+        Ajouter
+      </button>
+    </form>
+  </div>
+</main>
