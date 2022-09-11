@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InfirmierModel } from 'src/app/model/infirmier/infirmier.model';
-import { InfirmierService } from 'src/app/service/infirmier.service';
-import {Patient} from "../../model/patient";
+import { InfirmierService } from 'src/app/service/infirmier/infirmier.service';
+import {Patient} from "../../model/patient/patient";
 
 @Component({
   selector: 'app-infirmier',

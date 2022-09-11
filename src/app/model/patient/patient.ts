@@ -1,4 +1,4 @@
-import { InfirmierModel } from "./infirmier/infirmier.model";
+import { InfirmierModel } from "../infirmier/infirmier.model";
 
 export class Patient {
 

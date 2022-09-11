@@ -1,0 +1,45 @@
+.main{
+    width: 100%;
+}
+.main_content {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 40px 0;
+    text-align: center;
+}
+.page-title {
+    font-family: 'Paytone One', sans-serif;
+    font-size: 33px;
+    margin: 0 0 20px 0;
+}
+.page-description {
+    color: #adadad;
+    margin: 0 0 50px 0;
+}
+.card-list {
+    display: flex;
+    justify-content: space-between;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #adadad;
+    border-radius: 5px;
+    width: 300px;
+    min-height: 300px;
+}
+.card_title {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 20px 0;
+}
+.card_link{
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    background-color: #B40404;
+    color: #fff;
+    margin: 10px 0 0 0;
+}
